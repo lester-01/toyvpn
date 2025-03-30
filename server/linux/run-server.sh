@@ -4,7 +4,8 @@
 TUN_NETWORK_DEV=tun0
 
 # 自动获取当前网卡名称，形如 eth0
-CURRENT_NETWORK_DEV=$(ip route | grep "default .* dhcp" | awk '{print $5}')
+#CURRENT_NETWORK_DEV=$(ip route | grep "default .* dhcp" | awk '{print $5}')
+CURRENT_NETWORK_DEV=$(ip route | grep '^default' | head -n1 | awk '{print $5}')
 
 function check_root_account() {
     if [ `id -u` != 0 ]; then
